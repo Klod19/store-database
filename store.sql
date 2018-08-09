@@ -501,9 +501,37 @@ SELECT * FROM customers;
 SELECT * FROM employees
 WHERE first_name = 'Emily';
 
-/* the following shows all the employees with id greater than 2*/
+/* the following shows all the employees with id greater than 2; 
+it works also with "<" for smaller than and with "="*/
 SELECT * FROM employees
 WHERE id > 2;
+
+/* I can also show specific columns*/
+SELECT id, first_name, last_name FROM employees
+WHERE id > 2;
+
+
+/* more than one WHERE clause in a SELECT statement; no limits to times I use AND*/
+SELECT * FROM table_name
+WHERE column_name1 = "Value"
+AND column_name2 = "Value"
+AND column_name3 = "Value"
+
+SELECT * FROM orders
+WHERE price > 30.00
+AND quantity >= 2
+AND customer_id <= 15
+
+/* I can also filter strings, or a combination of different values (strings, numbers, boolean...)*/
+/* I can decide to show some data but filter it according to criteria not shown!*/
+/* following: I get 3 columns out of the table, according to gender, which is not shown*/
+SELECT id, first_name, last_name FROM customers
+WHERE gender = 'F'
+AND first_name ='Emily'
+AND id > 5;
+
+
+
 
 
 
