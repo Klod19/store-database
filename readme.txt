@@ -1,0 +1,1 @@
+database of a store, used to learn PostgreSQL
