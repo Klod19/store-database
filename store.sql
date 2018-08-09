@@ -471,9 +471,26 @@ INSERT INTO orders (customer_id, product_id, quantity, price, order_date)
 VALUES (17,12,3,20.00,'20170330');
 
 
+/* SELECT --> extract data from DB*/
+/* structure: SELECT column_name FROM table_name */
 
+SELECT column_name FROM table_name;
 
+SELECT wholesale_price FROM products;
 
+/* multiple columns: SELECT column_name1, column_name2, column_name3 etc FROM table_name*/
+
+SELECT first_name, last_name, address_id FROM customers;
+
+/* to select all data and not just specifi columns:*/
+
+SELECT * FROM table_name;
+
+SELECT * FROM employees;
+
+SELECT * FROM products;
+
+SELECT * FROM customers;
 
 
 
