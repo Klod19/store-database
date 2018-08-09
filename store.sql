@@ -492,6 +492,19 @@ SELECT * FROM products;
 
 SELECT * FROM customers;
 
+/* WHERE clause in a SELECT statement*/
+/* WHERE column_name = value (or using other combiners, like < or >)*/
+
+/* execute the two lines combined*/
+
+/* the following will show all the employees with first name "Emily" with ALL the other columns*/
+SELECT * FROM employees
+WHERE first_name = 'Emily';
+
+/* the following shows all the employees with id greater than 2*/
+SELECT * FROM employees
+WHERE id > 2;
+
 
 
 
