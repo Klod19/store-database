@@ -545,23 +545,36 @@ WHERE season = 'Winter';
 -- is more than 25.00 and quantity is less than 4
 
 SELECT * FROM orders
+
 SELECT id, quantity, order_date FROM orders
 WHERE price > 25.00
-AND quantity < 4
+AND quantity < 4;
+
+-- 4. Select all rows of data from the products table where season 
+-- is equal to summer and wholesale_price is at least 20.00.
+
+SELECT * FROM products
+WHERE season = 'Summer'
+AND wholesale_price >= 20.00;
 
 
+/* use IN, NOT IN in a WHERE clause*/
+/* allows us to have as parameter(s) as many values as we want */
+/* we will get the rows that match the value(s)*/
+SELECT * FROM address
+WHERE city IN ('Brighton', 'Worthing', 'London', 'Shoreham');
 
+--works also for numbers!
+SELECT * FROM address
+WHERE id IN (2,5,7,9,10);
 
+/* NOT IN: we will get the rows that don't match the values*/
+SELECT * FROM address
+WHERE id NOT IN (2,5,7,9,10);
 
-
-
-
-
-
-
-
-
-
+-- of course also for strings
+SELECT * FROM address
+WHERE city NOT IN ('Brighton', 'Worthing');
 
 
 
