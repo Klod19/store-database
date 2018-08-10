@@ -530,6 +530,40 @@ WHERE gender = 'F'
 AND first_name ='Emily'
 AND id > 5;
 
+-- EXERCISES!
+
+--1. Select the city and postcode from the address table. 
+SELECT city, postcode FROM address;
+
+-- 2. Select the product name from the products table where the season is winter.
+SELECT * FROM products;
+
+SELECT name FROM products
+WHERE season = 'Winter';
+
+-- 3. Select id, quantity and order_date from the orders table where price 
+-- is more than 25.00 and quantity is less than 4
+
+SELECT * FROM orders
+SELECT id, quantity, order_date FROM orders
+WHERE price > 25.00
+AND quantity < 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
