@@ -577,9 +577,20 @@ SELECT * FROM address
 WHERE city NOT IN ('Brighton', 'Worthing');
 
 
+/* BETWEEN statement in a WHERE clause*/
+/* get rows between the 2 stated values (included) */
 
+--the following will get the rows with id from 5 to 10 included
+SELECT * FROM  customers
+WHERE id BETWEEN 5 AND 10;
 
+-- more interesting: using BETWEEN with dates!
+-- in SQL dates are written with the format : 'yyyymmdd (date must be in single quotes)
+-- if I want to get all the customers that joined in 2016:
+SELECT first_name, last_name, date_joined FROM customers
+WHERE date_joined BETWEEN '20160101' AND '20161231';
 
+--it doesn't make much sense to use BETWEEN with strings
 
 
 
