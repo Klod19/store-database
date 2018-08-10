@@ -592,5 +592,47 @@ WHERE date_joined BETWEEN '20160101' AND '20161231';
 
 --it doesn't make much sense to use BETWEEN with strings
 
+/* the LIKE statement in the WHERE clause*/
 
+-- the % looks for any number of characters either side of the string;
+-- I can have whatever number of characters before or after the string
+SELECT * FROM products
+WHERE name LIKE '%Shirt';
 
+SELECT * FROM products
+WHERE name LIKE '%rt';
+
+SELECT * FROM products
+WHERE name LIKE 'Shi%'
+
+SELECT * FROM products
+WHERE name LIKE '%s%'
+
+-- the _ looks for just one character either side of the string
+-- I can have only one character before of after the string
+SELECT * FROM products
+WHERE name LIKE '_ocks'
+
+SELECT * FROM  products
+WHERE name LIKE 'Sock_'
+
+SELECT * FROM  products
+WHERE name LIKE '_ock_'
+
+/* EXERCISES*/
+-- 1. Select first and last name from customers where first name is Emily or John. 
+SELECT first_name, last_name FROM customers
+WHERE first_name IN ('Emily', 'John');
+
+-- 2. Select product id and name from the products table where the product name includes the string pattern Shirt. 
+SELECT id, name FROM products
+WHERE name LIKE '%Shirt%';
+
+-- 3. Select id from customers table for the customers who joined from June to September 2016. 
+SELECT id, date_joined FROM customers
+WHERE date_joined BETWEEN '20160601' AND '20160930';
+
+-- 4. Select id and order_date from the orders table for customer_ids 2, 4, 6, 8 in March 2017.
+SELECT id, order_date FROM orders
+WHERE customer_id IN (2,4,6,8) 
+AND order_date BETWEEN '20170301' AND '20170331';
