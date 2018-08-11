@@ -673,3 +673,8 @@ LIMIT 5 OFFSET 2;
 SELECT * FROM products
 ORDER BY wholesale_price ASC
 LIMIT 7 OFFSET 3;
+
+/* DISTINCT removes duplicate results from the result set*/
+/* it's used after SELECT*/
+
+SELECT DISTINCT city FROM address;
