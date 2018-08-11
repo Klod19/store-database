@@ -696,3 +696,4 @@ WHERE pay_per_hour > 10.00;
 -- ORDER BY will work with AS, and will still work with the name in the database
 SELECT id, first_name, last_name AS surname, pay AS pay_per_hour FROM employees
 ORDER BY pay_per_hour DESC;
+
