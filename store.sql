@@ -661,3 +661,15 @@ ORDER BY last_name ASC;
 SELECT * FROM employees
 ORDER BY last_name DESC;
 
+/* LIMIT: limits the resulting rows to a specified number*/
+/* OFFSET: coupled with LIMIT, ignores the first rows in quantity equal to the given number*/
+
+--get the 5  most expensive items, ignoring the 2 initial rows
+SELECT * FROM products
+ORDER BY wholesale_price DESC
+LIMIT 5 OFFSET 2;
+
+-- get the 7 cheapest items, ignoring the 3 initial rows;
+SELECT * FROM products
+ORDER BY wholesale_price ASC
+LIMIT 7 OFFSET 3;
