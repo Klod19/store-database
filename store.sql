@@ -636,3 +636,28 @@ WHERE date_joined BETWEEN '20160601' AND '20160930';
 SELECT id, order_date FROM orders
 WHERE customer_id IN (2,4,6,8) 
 AND order_date BETWEEN '20170301' AND '20170331';
+
+
+/* ORDER BY: ordering the result set, ASC (ascending) and (DESC) descending*/
+/* if ASC or DESC anre not specified, it's automatically in ascending order*/
+-- with numbers:
+SELECT * FROM orders
+ORDER BY quantity ASC;
+
+SELECT * FROM orders
+ORDER BY quantity DESC;
+
+-- with dates:
+SELECT * FROM orders
+ORDER BY order_date ASC;
+
+SELECT * FROM orders
+ORDER BY order_date DESC;
+
+-- with strings: alphabetical order!
+SELECT * FROM employees
+ORDER BY last_name ASC;
+
+SELECT * FROM employees
+ORDER BY last_name DESC;
+
