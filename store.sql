@@ -676,5 +676,23 @@ LIMIT 7 OFFSET 3;
 
 /* DISTINCT removes duplicate results from the result set*/
 /* it's used after SELECT*/
-
 SELECT DISTINCT city FROM address;
+
+-- works also with combined values; it will remove all the duplicates matching the chosen values
+SELECT DISTINCT city, street FROM address;
+
+
+/* AS: column name aliases; changes the colum name (but not in the database)*/
+-- the following will change each column name to what it's written after AS (each time!)
+
+SELECT id, first_name, last_name AS surname, pay AS pay_per_hour FROM employees;
+
+-- it's not changed in the database itself, just in the table visualization
+-- WHERE won't work with the new column name, because it's not in the database
+SELECT id, first_name, last_name AS surname, pay AS pay_per_hour FROM employees
+WHERE pay_per_hour > 10.00;
+-- I still have to use pay!
+
+-- ORDER BY will work with AS, and will still work with the name in the database
+SELECT id, first_name, last_name AS surname, pay AS pay_per_hour FROM employees
+ORDER BY pay_per_hour DESC;
