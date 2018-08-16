@@ -759,5 +759,7 @@ SELECT cu.id, cu.first_name, cu.last_name, o.quantity, o.price, o.order_date FRO
 FULL JOIN customers cu ON o.customer_id = cu.id
 WHERE cu.id IN (2,4,6,8,9)
 AND o.quantity > 1
+-- AND cu.first_name NOT IN ('John', 'David')
+AND cu.last_name LIKE '%ndre%'
 ORDER BY o.order_date DESC;
 
