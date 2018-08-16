@@ -727,9 +727,37 @@ SELECT first_name, last_name, pay AS pay_per_hour FROM employees;
 */
 
 -- NOTE: table.column_name returns all the matching rows
--- in the following I select columns from 2 different tables, and I merge them where the costumer_id of the table 
--- "orders" and the id in the table "customers" match
-SELECT customers.first_name, customers.last_name, orders.quantity, orders.price FROM orders
-INNER JOIN customers ON orders.customer_id = customers.id
 
+-- in the following I select columns from 2 different tables, and I merge them according to the condition stated 
+-- after ON where the costumer_id of the table "orders" and the id in the table "customers" match
+SELECT customers.first_name, customers.last_name, orders.quantity, orders.price FROM orders
+INNER JOIN customers ON orders.customer_id = customers.id;
+
+-- I can write the same as above setting an "alias" for the tables
+SELECT cu.first_name, cu.last_name, o.quantity, o.price FROM orders o
+INNER JOIN customers cu ON o.customer_id = cu.id;
+
+-- it can be that some rows don't appear, because for example the required value is not stated (null);
+-- for example witn a customer id in the "order" table -> use FULL JOIN to show them too
+-- NOTE: JOIN is always by default INNER, unless specified
+SELECT cu.first_name, cu.last_name, o.quantity, o.price FROM orders o
+FULL JOIN customers cu ON o.customer_id = cu.id;
+
+
+-- another example: join the product name from "products" related to its quantity and price from "orders"
+SELECT pr.name, o.quantity, o.price FROM orders o
+INNER JOIN products pr ON o.product_id = pr.id;
+
+-- INNER JOIN with WHERE; it's similar, just add WHERE clause
+-- also: ORDER BY table.value
+-- always state the table to which the value belongs!
+SELECT cu.first_name, cu.last_name, o.quantity, o.price FROM orders o
+FULL JOIN customers cu ON o.customer_id = cu.id
+WHERE cu.first_name = 'John';
+
+SELECT cu.id, cu.first_name, cu.last_name, o.quantity, o.price, o.order_date FROM orders o
+FULL JOIN customers cu ON o.customer_id = cu.id
+WHERE cu.id IN (2,4,6,8,9)
+AND o.quantity > 1
+ORDER BY o.order_date DESC;
 
