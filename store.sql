@@ -763,3 +763,25 @@ AND o.quantity > 1
 AND cu.last_name LIKE '%ndre%'
 ORDER BY o.order_date DESC;
 
+/* EXERCISES: INNER JOIN*/
+--1. Select the name from the products table and the order_date from the orders table.
+SELECT pr.name, o.order_date FROM orders o
+INNER JOIN products pr ON pr.id = o.product_id
+ORDER BY order_date DESC;
+
+--2. Select the first_name and last_name from the customers table and the id from the orders 
+--   table for orders placed in February 2017, ordered by customer last_name alphabetically Z to A. 
+SELECT o.id, cu.first_name, cu.last_name, o.order_date FROM customers cu
+INNER JOIN orders o ON cu.id = o.customer_id
+WHERE o.order_date BETWEEN '20170201' AND '20170228'
+ORDER BY cu.last_name DESC;
+
+--3. Select date_joined from the customers table and postcode from the address table where city is Brighton, 
+--   ordered by customers first_name alphabetically A to Z. 
+SELECT cu.first_name, cu.date_joined, ad.postcode, ad.city FROM customers cu
+INNER JOIN address ad ON ad.id = cu.address_id
+WHERE ad.city IN ('Brighton', 'London')
+ORDER BY cu.first_name ASC;
+
+
+
