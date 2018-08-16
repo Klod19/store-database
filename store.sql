@@ -783,5 +783,19 @@ INNER JOIN address ad ON ad.id = cu.address_id
 WHERE ad.city IN ('Brighton', 'London')
 ORDER BY cu.first_name ASC;
 
+/* LEFT JOIN*/
+/* it returns all data from table 1 + matched data from table 2 */
+/* it means it returns rows that have a match in table 1 (on the "left") but don't necessarily have a match in table 2
+*/
+/* it means we can get "null" values from table 2 (if it doesn't have corresponding values)*/
+SELECT * FROM address;
+SELECT * FROM customers;
+
+SELECT a.id, a.city, cu.first_name, cu.last_name, c.address_id FROM customers cu
+LEFT JOIN address a ON a.id = cu.address_id;
+
+SELECT a.id, a.city, cu.first_name, cu.last_name, cu.address_id FROM address a
+LEFT JOIN customers cu  ON a.id = cu.address_id;
+
 
 
