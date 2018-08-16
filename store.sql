@@ -697,3 +697,39 @@ WHERE pay_per_hour > 10.00;
 SELECT id, first_name, last_name AS surname, pay AS pay_per_hour FROM employees
 ORDER BY pay_per_hour DESC;
 
+
+/* EXERCISES */
+
+-- 1. Order the orders table by quantity from highest to lowest. 
+SELECT * FROM orders
+ORDER BY quantity DESC;
+
+-- 2. Select only distinct (no duplicates)first_name in the customers table and order alphabetically from A to Z.
+SELECT DISTINCT first_name FROM customers
+ORDER BY first_name ASC;
+
+-- 3. Select only the first 5 last_name's from the customers table, ordered alphabetically A to Z, 
+-- where last_name includes at least 1 's'.
+SELECT last_name FROM customers
+WHERE last_name LIKE '%s%'
+ORDER BY last_name ASC
+LIMIT 5 ;
+
+
+-- 4. Select first_name, last_name and pay from the employees table but rename the pay column to 'pay_per_hour'.
+SELECT first_name, last_name, pay AS pay_per_hour FROM employees;
+
+
+/* NEW SECTION: JOIN TWO TABLES!*/
+
+/* INNER JOIN: in the Venn Diagram, is like the common area between 2 groups
+   it joins only the elements in common between the 2 tables 
+*/
+
+-- NOTE: table.column_name returns all the matching rows
+-- in the following I select columns from 2 different tables, and I merge them where the costumer_id of the table 
+-- "orders" and the id in the table "customers" match
+SELECT customers.first_name, customers.last_name, orders.quantity, orders.price FROM orders
+INNER JOIN customers ON orders.customer_id = customers.id
+
+
