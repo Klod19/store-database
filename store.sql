@@ -797,5 +797,39 @@ LEFT JOIN address a ON a.id = cu.address_id;
 SELECT a.id, a.city, cu.first_name, cu.last_name, cu.address_id FROM address a
 LEFT JOIN customers cu  ON a.id = cu.address_id;
 
+/* RIGHT JOIN*/
+/* returns all data from table 2 + matched data from table 1*/
+SELECT * FROM address;
+SELECT * FROM customers;
+
+SELECT a.id, a.city, cu.first_name, cu.last_name, c.address_id FROM customers cu
+RIGHT JOIN address a ON a.id = cu.address_id;
+
+SELECT a.id, a.city, cu.first_name, cu.last_name, cu.address_id FROM address a
+RIGHT JOIN customers cu  ON a.id = cu.address_id;
+
+/*FULL JOIN (OUTER JOIN in other programs*/
+/* returns all the matching data from the 2 tables*/
+
+SELECT a.id, a.city, cu.first_name, cu.last_name, c.address_id FROM address a
+LEFT JOIN customers cu ON a.id = cu.address_id;
+
+SELECT a.id, a.city, cu.first_name, cu.last_name, cu.address_id FROM address a
+RIGHT JOIN customers cu  ON a.id = cu.address_id;
+
+-- I can use also WHERE clause, ORDER BY ecc
+SELECT * FROM customers cu
+FULL JOIN address a ON a.id = cu.address_id
+WHERE cu.first_name = 'John'
+ORDER BY a.city DESC;
+
+--NOTE: some programs other than PostgreSQL need another way ot show all columns:
+SELECT cu.*, a.* FROM customers cu
+FULL JOIN address a ON a.id = cu.address_id
+WHERE cu.first_name = 'John'
+ORDER BY a.city DESC;
+
+
+
 
 
