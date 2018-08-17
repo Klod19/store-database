@@ -848,5 +848,17 @@ SELECT cu.first_name, ad.city FROM customers cu
 FULL JOIN address ad ON cu.address_id = ad.id;
 --28? NO, 29; we get John with null address and the 4 addresses without customer
 
+/* JOIN multiple tables*/
+/* I can join as many talbles as I want, provided there are matching columns*/
+SELECT cu.first_name, cu.last_name, ad.street, ad.postcode, pr.name, o.quantity, o.price, o.order_date FROM orders o
+JOIN products pr ON o.product_id = pr.id
+JOIN customers cu ON o.customer_id = cu.id
+LEFT JOIN address ad ON cu.address_id = ad.id
+WHERE ad.city = 'Brighton'
+AND pr.name = 'Shoes'
+ORDER BY cu.first_name;
+
+
+
 
 
