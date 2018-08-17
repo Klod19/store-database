@@ -829,7 +829,24 @@ FULL JOIN address a ON a.id = cu.address_id
 WHERE cu.first_name = 'John'
 ORDER BY a.city DESC;
 
+/* EXERCISES ON LEFT-RIGHT-FULL JOIN*/
+--1. How many rows are returned by a LEFT JOIN between the customers (table 1) and address (table 2) tables.
+SELECT*FROM customers cu;
+SELECT*FROM address ad;
 
+SELECT cu.first_name, ad.city FROM customers cu
+LEFT JOIN address ad ON cu.address_id = ad.id;
+-- 24? NO, 25; the 3rd row has John with null City, becuase we have John in the left table, so it's returned
+
+--2. How many rows are returned by a RIGHT JOIN between the customers (table 1) and address (table 2) tables.
+SELECT cu.first_name, ad.city FROM customers cu
+RIGHT JOIN address ad ON cu.address_id = ad.id;
+-- 28; it returns some addresses without customer (customer null)
+
+--3. How many rows are returned by a FULL JOIN between the customers (table 1) and address (table 2) tables.
+SELECT cu.first_name, ad.city FROM customers cu
+FULL JOIN address ad ON cu.address_id = ad.id;
+--28? NO, 29; we get John with null address and the 4 addresses without customer
 
 
 
