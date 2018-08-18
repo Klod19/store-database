@@ -858,7 +858,31 @@ WHERE ad.city = 'Brighton'
 AND pr.name = 'Shoes'
 ORDER BY cu.first_name;
 
+/* UNION and UNION ALL*/
 
+--combines the results set of two SELECT statements
 
+-- the SELECT statements must have the same number of columns
+-- the columns must be of compatible data types (string with string etc)
 
+SELECT first_name, last_name FROM customers
+UNION
+SELECT first_name, last_name FROM employees;
 
+-- !!UNION will remove duplicate row from the result set:
+-- for example, 'John' will appear only one time, even if there are many such rows (see following)
+SELECT first_name FROM customers
+UNION
+SELECT first_name FROM employees;
+
+--!! UNION ALL will return all the rows, even those with duplicates
+SELECT first_name FROM customers
+UNION ALL
+SELECT first_name FROM employees;
+
+-- I can combine with WHERE clause
+-- the following returns the (3) customer with first name 'John' + all the employees (because no wHERE clause for them)
+SELECT first_name, last_name FROM customers
+WHERE first_name = 'John'
+UNION ALL
+SELECT first_name, last_name FROM employees;
