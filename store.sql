@@ -973,8 +973,16 @@ SELECT SUM(hours) AS total_hours_worked FROM employees;
 SELECT SUM(quantity) AS total_orders FROM orders
 WHERE order_date BETWEEN '20170101' AND '20170131';
 
+/* average: AVG*/
+/* returns the average of the various values of rows of a specific column*/
+/* SELECT AVG(column_name) FROM (table_name)*/
 
+-- AVG of pay of employees
+SELECT AVG(pay) FROM employees;
 
+--AVG of the prices from the order table -> avera price of the stuff the customers are buying
+SELECT AVG(price) FROM orders;
 
-
-
+-- the same as above, but ignoring orders where quantity is equal to 1
+SELECT AVG(price) FROM orders
+WHERE quantity >1;
