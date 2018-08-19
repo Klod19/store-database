@@ -881,8 +881,45 @@ UNION ALL
 SELECT first_name FROM employees;
 
 -- I can combine with WHERE clause
--- the following returns the (3) customer with first name 'John' + all the employees (because no wHERE clause for them)
+-- the following returns the (3) customer with first name 'John' + all the employees (because no WHERE clause for them)
 SELECT first_name, last_name FROM customers
 WHERE first_name = 'John'
 UNION ALL
 SELECT first_name, last_name FROM employees;
+
+/* EXERCISE: select from multiple tables*/
+
+--1. Select the first_name and last_name from the customers table, name and season 
+--   from the products table and quantity from the orders table, where city is equal to Worthing.
+-- (for this I need also to work on the table 'address', which stores the address id, common with table 'customers')
+SELECT cu.first_name, cu.last_name, pr.name, pr.season, o.quantity FROM customers cu
+JOIN orders o ON cu.id = o.customer_id
+JOIN products pr ON pr.id = o.product_id
+JOIN address ad ON ad.id = cu.address_id
+WHERE ad.city = 'Worthing';
+
+
+--2. Select the quantity, price and order_date from the orders table, name from the product,
+--   and street and postcode from the address table. 
+-- (I'll need 'customers' table to link 'address' to the the other 2 tables)
+SELECT o.quantity, o.price, o.order_date, pr.name, ad.street, ad.postcode FROM orders o
+JOIN products pr ON pr.id = o.product_id
+JOIN customers cu ON cu.id = o.customer_id
+JOIN  address ad ON ad.id = cu.address_id;
+
+SELECT * FROM orders;
+SELECT * FROM products;
+SELECT * FROM address;
+SELECT * FROM customers;
+
+--3. Select the first_name and last_name from the employees and customers tables using a UNION clause. 
+-- the following will return all the rows, even the ones with duplicated values
+SELECT first_name, last_name FROM employees
+UNION ALL
+SELECT first_name, last_name FROM customers;
+
+-- the following will not return the duplicated values BUT will returns the same number of rows, because there 
+-- are no rows with the same first_name && the same last_name
+SELECT first_name, last_name FROM employees
+UNION 
+SELECT first_name, last_name FROM customers;
