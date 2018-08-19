@@ -946,6 +946,17 @@ SELECT COUNT (*) FROM orders
 WHERE order_date BETWEEN '20170101' AND '20170131';
 
 
+/* MIN and MAX*/
+/* MIN gets the minimum value out of a column of a table*/
+/* SELECT MIN (column_name) FROM table_name*/
+
+--get the MIN value of colums wholesale_price, table products
+-- it's the cheapest product, i can change also the column name in the result, for clarity
+
+SELECT MIN(wholesale_price) AS cheapest_price FROM products; 
+
+-- get the MAX value of columns quantity, table orders
+-- it's the biggest order in terms of quantity
 
 
 
