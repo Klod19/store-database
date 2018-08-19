@@ -956,7 +956,24 @@ WHERE order_date BETWEEN '20170101' AND '20170131';
 SELECT MIN(wholesale_price) AS cheapest_price FROM products; 
 
 -- get the MAX value of columns quantity, table orders
--- it's the biggest order in terms of quantity
+-- it's the biggest order in terms of quantity (in the following it's 5)
+SELECT MAX (quantity) AS biggest_quantity FROM orders;
+
+
+/* SUM */
+/* adds up all the rows for a particular column and returns a value*/
+/* SELECT SUM (column_name) FROM table_name*/
+/* can't use it on a non-numeric column!!*/
+
+--get the total hours worked by the employees
+SELECT SUM(hours) AS total_hours_worked FROM employees;
+
+
+--how many orders in Januray 2017? (460)
+SELECT SUM(quantity) AS total_orders FROM orders
+WHERE order_date BETWEEN '20170101' AND '20170131';
+
+
 
 
 
