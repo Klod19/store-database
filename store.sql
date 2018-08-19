@@ -923,3 +923,30 @@ SELECT first_name, last_name FROM customers;
 SELECT first_name, last_name FROM employees
 UNION 
 SELECT first_name, last_name FROM customers;
+
+
+/* SECTION 5*/
+
+/* COUNT : aggregates all the rows returned from SELECT statement into one number (one value) */
+/* it counts the rows that satisify a condition; returns the result!*/
+
+--the following will just count all the rows in the table "employees" (4) and return their amount(4)
+SELECT COUNT(*) FROM employees;
+
+SELECT * FROM products
+
+-- the following will count the rows with season = 'Summer' (2)
+-- instead of * i can put for example "name"; the result won't change, it will count the rows with matching season 
+SELECT COUNT(name) FROM products
+WHERE season = 'Summer';
+
+-- I can count how many orders where placed between two dates or in a month
+-- for example, in January 2017 we have 15 orders
+SELECT COUNT (*) FROM orders
+WHERE order_date BETWEEN '20170101' AND '20170131';
+
+
+
+
+
+
