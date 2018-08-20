@@ -1026,7 +1026,7 @@ GROUP BY customer_id, product_id
 ORDER BY customer_id;
 
 -- something more meaningful: 
--- return customer first and last name, product name and the sum of the price
+-- return  grouped data of: customer first and last name, product name + the sum of the price
 -- run the following: if Edward Ball will buy 1 more item 'socks', with such code there will be no extra row
 -- for this purchase, but the sum will be updated (20.00 + 10.00 of the new purchase)
 
@@ -1036,9 +1036,34 @@ JOIN products pr ON pr.id = o.product_id
 GROUP BY cu.first_name, cu.last_name, pr.name
 ORDER BY cu.last_name;
 
+/* HAVING clause*/
+/* does the same as WHERE, but can be used after GROUP BY (WHERE can't)*/
 
-SELECT * FROM products
-WHERE wholesale_price >= 20
+-- return the grouped data of custumer_id = 8 + the sum of the price:
+SELECT customer_id, SUM(price) FROM orders
+GROUP BY customer_id
+HAVING customer_id = 8;
+
+-- return  grouped data of: customer first and last name, product name + the sum of the price
+-- and add an HAVING clause to obtain each product name which has the word "Shirt":
+
+SELECT cu.first_name, cu.last_name, pr.name, SUM(o.price) FROM customers cu
+JOIN orders o ON o.customer_id = cu.id
+JOIN products pr ON pr.id = o.product_id
+GROUP BY cu.first_name, cu.last_name, pr.name
+HAVING pr.name LIKE '%Shirt%'
+ORDER BY cu.last_name;
+
+/* EXERCISE: Questions on Aggregate Functions */
+
+
+1. Write a query which will return the maximum value in the hours column from the employees table. 
+
+2. Write a query which will return the number of rows in the address table where city is equal to London. 
+
+3. What was the total quantity bought in January 2017, grouped by each product and order date?
+
+4. What was the average price spent, grouped by each order date, for March 2017? 
 
 
 
