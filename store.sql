@@ -986,3 +986,59 @@ SELECT AVG(price) FROM orders;
 -- the same as above, but ignoring orders where quantity is equal to 1
 SELECT AVG(price) FROM orders
 WHERE quantity >1;
+
+
+/* GROUP BY: groups data*/
+/* the following for example groups the data from customer_id in one row, returning the sum of all the prices
+	of the stuff bought by that customer*/
+/* I group the data "by", according to customer_id, which will be stated in just one row, despite the fact
+   that it appears in multiple rows in the table "orders"*/
+/* SELECT column_1, SUM(column_3), FROM table
+   ORDER BY column_1;*/
+
+SELECT customer_id, SUM(price) FROM orders
+GROUP BY customer_id;
+
+-- now, select 2 columns when we have just 1 which is being aggregated over
+-- the 2 colums must appear both in SELECT and GROUP BY
+-- SELECT column_1, column_2, SUM(column_3), FROM table
+-- ORDER BY column_1, column_2;
+-- if there are repeated products_id (i.e. if the customer bought the same product more than once), the price will
+-- be summed up and the relative customer_id rows will be grouped into 1 row (try the stuff below)
+
+-- here the customer with id 1 has 4 rows (return it just to check)
+SELECT * FROM orders
+WHERE customer_id = 1
+ORDER BY customer_id;
+
+-- here the customer with id 1 has 3 rows, because two of have the same price, so they are grouped and the price is 
+-- summed --> !! it means that duplicated values are summed
+SELECT customer_id, product_id, SUM(price) FROM orders
+WHERE customer_id = 1
+GROUP BY customer_id, product_id
+ORDER BY customer_id;
+
+
+-- if there is not this situation, each has one row: it's shown here, (and there is still only one row with 
+-- customer_id = 1 and product_id = 11, which has as price 40.00 instead of 20.00 because it's summed)
+SELECT customer_id, product_id, SUM(price) FROM orders
+GROUP BY customer_id, product_id
+ORDER BY customer_id;
+
+-- something more meaningful: 
+-- return customer first and last name, product name and the sum of the price
+-- run the following: if Edward Ball will buy 1 more item 'socks', with such code there will be no extra row
+-- for this purchase, but the sum will be updated (20.00 + 10.00 of the new purchase)
+
+SELECT cu.first_name, cu.last_name, pr.name, SUM(o.price) FROM customers cu
+JOIN orders o ON o.customer_id = cu.id
+JOIN products pr ON pr.id = o.product_id
+GROUP BY cu.first_name, cu.last_name, pr.name
+ORDER BY cu.last_name;
+
+
+SELECT * FROM products
+WHERE wholesale_price >= 20
+
+
+
