@@ -1056,14 +1056,33 @@ ORDER BY cu.last_name;
 
 /* EXERCISE: Questions on Aggregate Functions */
 
+--1. Write a query which will return the maximum value in the hours column from the employees table. 
+-- I'll use MAX
+SELECT MAX (hours) FROM employees;
 
-1. Write a query which will return the maximum value in the hours column from the employees table. 
+--2. Write a query which will return the number of rows in the address table where city is equal to London. 
+-- I'll use COUNT; i put a * in parentheses, because it doesn't matter which column is getting considerd,
+-- I'm counting the rows where column city = 'London' (these rows have also other columns)
+SELECT COUNT(*) FROM address
+WHERE city = 'London';
 
-2. Write a query which will return the number of rows in the address table where city is equal to London. 
+--3. What was the total quantity bought in January 2017, grouped by each product and order date?
+-- I need GROUP BY and I need to join product and orders
+SELECT pr.name, o.order_date, SUM(o.quantity) AS total_quantity_sold FROM products pr
+JOIN orders o ON o.product_id = pr.id
+GROUP BY pr.name, o.order_date
+HAVING o.order_date BETWEEN '20170101' AND '20170131'
+ORDER BY total_quantity_sold DESC;
 
-3. What was the total quantity bought in January 2017, grouped by each product and order date?
-
-4. What was the average price spent, grouped by each order date, for March 2017? 
-
+-- to get the total quantity of products sold:
+SELECT SUM(quantity) FROM orders;
 
 
+--4. What was the average price spent, grouped by each order date, for March 2017? 
+-- practically the average spent per day
+-- here I don't need to join table, I have all I need in one; I still need to group data
+SELECT order_date, AVG(price) FROM orders
+GROUP BY order_date
+HAVING order_date BETWEEN '20170301' AND '20170331'
+ORDER BY order_date ASC;
+ 
